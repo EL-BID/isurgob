@@ -42,7 +42,7 @@ addons:
     apt:
         packages:
         - php-simplexml
-	- php-mbstring
+        - php-mbstring
         - php-mcrypt
         - php-gd
         - php-zip
