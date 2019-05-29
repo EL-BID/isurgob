@@ -1,6 +1,4 @@
 language: php
-php:
-  - '7.0'
 # optionally set up exclusions and allowed failures in the matrix
 matrix:
   include:
