@@ -1,64 +1,39 @@
+--- 
+addons: 
+  apt: 
+    packages: 
+      - php-simplexml
+      - php-mbstring
+      - php-mcrypt
+      - php-gd
+      - php-zip
+      - pdo-pgsql
+before_install: ~
+before_script: 
+  - "if [[ \"$DB\" == \"pgsql\" ]]; then psql -h localhost -U postgres -f \"bd/a-pgbackup_sam_logico-2019-05.sql\" -U postgres; fi"
+  - "if [[ \"$DB\" == \"pgsql\" ]]; then psql -h localhost -U postgres -f \"bd/b-pgbackup_sam_dataaux-2019-05.sql\" -U postgres; fi"
+dist: trusty
+env: 
+  - DB=pgsql
+exclude: 
+  - 
+    env: DB=pgsql
+    php: hhvm
+  - 
+    php: 7.0
+  - 
+    php: hhvm
+include: 
+  - 
+    php: 7.0
+install: 
+  - "wget https://github.com/isurgob/isurgob/archive/master.zip"
+  - "unzip master.zip"
 language: php
-# optionally set up exclusions and allowed failures in the matrix
-matrix:
-  include:
-  # Definicion de pruebas sobre multiples versiones de lenguaje y motor
-  - php: 7.0
-      dist: trusty
-      env:
-      - DB=pgsql
-      sudo: required
-      services:
-      - postgresql
-      
-    - php: 7.1
-      dist: trusty
-      env:
-      - DB=pgsql
-      sudo: required
-      services:
-      - postgresql
-
-    - php: 7.2
-      dist: trusty
-      env:
-      - DB=pgsql
-      sudo: required
-      services:
-      - postgresql
-
-  exclude:
-    - php: hhvm
-      env: DB=pgsql  # PDO driver for pgsql
-    - php: 7.0
-    - php: hhvm
-
-# extensiones
-before_install:
-
-addons:
-    apt:
-        packages:
-        - php-simplexml
-        - php-mbstring
-        - php-mcrypt
-        - php-gd
-        - php-zip
-        - pdo-pgsql
-install:
-  - wget https://github.com/isurgob/isurgob/archive/master.zip
-  - unzip master.zip
-  
-# execute any number of scripts before the test run, custom env's are available as variables
-before_script:
-  - if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/a-pgbackup_sam_logico-2019-05.sql" -U postgres; fi
-  - if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/b-pgbackup_sam_dataaux-2019-05.sql" -U postgres; fi
-
-# omitting "script:" will default to phpunit
-# use the $DB env variable to determine the phpunit.xml to use
-script: phpunit --configuration phpunit_$DB.xml --coverage-text
-
-# configure notifications (email, IRC, campfire etc)
-notifications:
-  #  irc: "irc.freenode.org#yourfavouriteroomfortravis"
-  email: "sandracmart@gmail.com"
+matrix: ~
+notifications: 
+  email: sandracmart@gmail.com
+script: "phpunit --configuration phpunit_$DB.xml --coverage-text"
+services: 
+  - postgresql
+sudo: required
