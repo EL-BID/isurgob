@@ -1,3 +1,4 @@
+
 language: php
 
 # optionally set up exclusions and allowed failures in the matrix
@@ -36,12 +37,12 @@ matrix:
 
 # extensiones
 before_install:
-- sudo apt-get install -y libxml2-dev
+
 addons:
     apt:
         packages:
         - php-simplexml
-        - php-mbstring
+		- php-mbstring
         - php-mcrypt
         - php-gd
         - php-zip
@@ -62,4 +63,4 @@ script: phpunit --configuration phpunit_$DB.xml --coverage-text
 # configure notifications (email, IRC, campfire etc)
 notifications:
   #  irc: "irc.freenode.org#yourfavouriteroomfortravis"
-  email: "sandracmart@gmail.com"
+  email:
