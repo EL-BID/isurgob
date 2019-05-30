@@ -35,9 +35,9 @@ install:
   - unzip master.zip
   
 # execute any number of scripts before the test run, custom env's are available as variables
-before_script:
-  - if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/a-pgbackup_sam_logico-2019-05.sql" -U postgres; fi
-  - if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/b-pgbackup_sam_dataaux-2019-05.sql" -U postgres; fi
+#before_script:
+  #- if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/a-pgbackup_sam_logico-2019-05.sql" -U postgres; fi
+  #- if [[ "$DB" == "pgsql" ]]; then psql -h localhost -U postgres -f "bd/b-pgbackup_sam_dataaux-2019-05.sql" -U postgres; fi
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
