@@ -1,3 +1,5 @@
+[![Analytics](https://gabeacon.irvinlim.com/UA-4677001-16/isurgob/readme?useReferer)](https://github.com/EL-BID/isurgob)
+
 ## ISURGOB
 
 ### Sistema Integrado de Gobierno
